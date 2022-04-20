@@ -44,7 +44,7 @@ function safelyRenameKlaytnTransactionType(result) {
 ProviderSubprovider.prototype.handleRequest = function (payload, next, end) {
   this.provider.send(payload, function (err, response) {
     if (err) return end(err);
-    // if (response.error) return end(new Error(response.error.message))
+    if (response.error) return end(new Error(response.error.message));
 
     // rename response.result.type to something else
     safelyRenameKlaytnTransactionType(response.result);
